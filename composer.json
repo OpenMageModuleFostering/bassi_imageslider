@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Bassi_Imageslider",
+    "type": "magento-module",
+    "license": "OSL-v3.0",
+    "homepage": "",
+    "description": "Banner slider place and run banner images as a slider at the top of homepage and other CMS pages.",
+    "authors": [
+    {
+        "name": "Umesh Sharma",
+        "email": "umeshbassi@gmail.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
