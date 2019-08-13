@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Bassi_Imageslider>
-            <version>1.0.0</version>
+            <version>1.0.3</version>
         </Bassi_Imageslider>
     </modules>
     <global>

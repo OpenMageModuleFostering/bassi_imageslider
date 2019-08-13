@@ -56,10 +56,10 @@ class Bassi_Imageslider_Block_Adminhtml_Imageslider_Edit_Tab_Form extends Mage_A
       ));
 			
      
-      if ( Mage::getSingleton('adminhtml/session')->getBannerSliderData() )
+      if ( Mage::getSingleton('adminhtml/session')->getImageSliderData() )
       {
-          $data = Mage::getSingleton('adminhtml/session')->getBannerSliderData();
-          Mage::getSingleton('adminhtml/session')->setBannerSliderData(null);
+          $data = Mage::getSingleton('adminhtml/session')->getImageSliderData();
+          Mage::getSingleton('adminhtml/session')->setImageSliderData(null);
       } elseif ( Mage::registry('imageslider_data') ) {
           $data = Mage::registry('imageslider_data')->getData();
       }

@@ -3,10 +3,7 @@
 	<modules>
 		<Bassi_Imageslider>
 		    <active>true</active>
-		    <codePool>community</codePool>
-		    <depends>
-			<Mage_Catalog />
-		    </depends>
+		    <codePool>community</codePool>		   
 		</Bassi_Imageslider>
 	</modules>
 </config>
