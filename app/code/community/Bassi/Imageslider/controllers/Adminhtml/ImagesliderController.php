@@ -1,4 +1,17 @@
 <?php
+/**
+ *
+ * Version			: 1.0.4
+ * Edition 			: Community 
+ * Compatible with 	: Magento 1.5.x to latest
+ * Developed By 	: Magebassi
+ * Email			: magebassi@gmail.com
+ * Web URL 			: www.magebassi.com
+ * Extension		: Magebassi Easy Banner slider
+ * 
+ */
+?>
+<?php
 
 class Bassi_Imageslider_Adminhtml_ImagesliderController extends Mage_Adminhtml_Controller_Action
 {
@@ -70,49 +83,47 @@ class Bassi_Imageslider_Adminhtml_ImagesliderController extends Mage_Adminhtml_C
 			elseif(is_array($data['filename'])){
 				$data['filename']=$data['filename']['value'];
 			}
-			
-			
+							  			
 			$file = new Varien_Io_File();			
-			$baseDir = Mage::getBaseDir();
-			$mediaDir = $baseDir.DS.'media';
-			$imageDir = $mediaDir.DS.'bsimages';
-			$thumbimageyDir = $mediaDir.DS.'bsimages'.DS.'thumbs';
-			
+			$imageDir = Mage::getBaseDir('media') . DS .  'mbimages';
+			$thumbimageyDir = Mage::getBaseDir('media').DS.'mbimages'.DS.'thumbs';
+		
 			if(!is_dir($imageDir)){
 				$imageDirResult = $file->mkdir($imageDir, 0777);         
 			}			
 			if(!is_dir($thumbimageyDir)){
 				$thumbimageDirResult = $file->mkdir($thumbimageyDir, 0777);     
-			}
-			
-			//$thumbimageDirResult = $file->mkdir($thumbimageyDir);
-			
-			if(isset($_FILES['filename']['name']) && $_FILES['filename']['name'] != '') {
+			}			
+		
+		
+			if(isset($_FILES['filename']['name']) && $_FILES['filename']['name'] != '') 
+			{
 				try {	
 					/* Starting upload */	
 					$uploader = new Varien_File_Uploader('filename');
-					
+				
 					// Any extention would work
-	           		$uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-					$uploader->setAllowRenameFiles(false);
-					
+					$uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
+					$uploader->setAllowRenameFiles(true);
+				
 					// Set the file upload mode 
 					// false -> get the file directly in the specified folder
 					// true -> get the file in the product like folders 
 					//	(file.jpg will go in something like /media/f/i/file.jpg)
-					$uploader->setFilesDispersion(false);
-							
+					$uploader->setFilesDispersion(true);
+						
 					// We set media as the upload dir
 					//$path = Mage::getBaseDir('media') . DS ;
 					$path = $imageDir . DS ;
-					$result = $uploader->save($path, $_FILES['filename']['name'] );
+					$result = $uploader->save($path, $_FILES['filename']['name']);
+					$file = str_replace(DS, '/', $result['file']);
 					###############################################################################
 					// actual path of image
-					$imageUrl = Mage::getBaseDir('media').DS."bsimages".DS.$_FILES['filename']['name'];
+					$imageUrl = Mage::getBaseDir('media').DS."mbimages".$file;
 					 
 					// path of the resized image to be saved
 					// here, the resized image is saved in media/resized folder
-					$imageResized = Mage::getBaseDir('media').DS."bsimages".DS."thumbs".DS.$_FILES['filename']['name'];					
+					$imageResized = Mage::getBaseDir('media').DS."mbimages".DS."thumbs".DS."mbimages".$file;					
 					 
 					// resize image only if the image file exists and the resized image file doesn't exist
 					// the image is resized proportionally with the width/height 135px
@@ -124,18 +135,14 @@ class Bassi_Imageslider_Adminhtml_ImagesliderController extends Mage_Adminhtml_C
 						$imageObj->quality(100);
 						$imageObj->resize(80, 50);
 						$imageObj->save($imageResized);
-					endif;
-					#################################################################################
-					
-					
-					
-					
-					$data['filename'] = $result['file'];
+					endif;				
+				
+					$data['filename'] = 'mbimages'.$file;
 				} catch (Exception $e) {
-					$data['filename'] = $_FILES['filename']['name'];
-		        }
-			}	  			
-	  			
+					$data['filename'] = 'mbimages'.'/'.$_FILES['filename']['name'];
+				}
+			}	  		
+			
 			$model = Mage::getModel('imageslider/imageslider');		
 			$model->setData($data)
 				->setId($this->getRequest()->getParam('id'));

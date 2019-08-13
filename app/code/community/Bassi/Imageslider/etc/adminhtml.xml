@@ -2,14 +2,19 @@
 <config>
 	<menu>
 		<imageslider module="imageslider">
-			<title>Bassi Banner Slider</title>
+			<title>Magebassi Easy Banner Slider</title>
 			<sort_order>50</sort_order>               
 			<children>
 				<items module="imageslider">
 					<title>Banner Manager</title>
-					<sort_order>0</sort_order>
+					<sort_order>1</sort_order>
 					<action>imageslider/adminhtml_imageslider</action>
 				</items>
+				<configitems module="imageslider">
+					<title>Configuration Settings</title>
+					<sort_order>2</sort_order>
+					<action>adminhtml/system_config/edit/section/imageslider</action>
+				</configitems>
 			</children>
 		</imageslider>
 	</menu>

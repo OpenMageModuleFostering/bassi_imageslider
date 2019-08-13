@@ -3,11 +3,11 @@
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
-    "description": "Banner slider place and run banner images as a slider at the top of homepage and other CMS pages.",
+    "description": "Magebassi Responsive Easy Banner Slider runs images as slider on CMS, Static and other custom locations",
     "authors": [
     {
-        "name": "Umesh Sharma",
-        "email": "umeshbassi@gmail.com"
+        "name": "Umesh",
+        "email": "magebassi@gmail.com"
     }
 ],
     "suggest": {

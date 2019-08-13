@@ -45,7 +45,7 @@
 		
 		loaderStroke		: 7,	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter
 				
-		minHeight			: '200px',	//you can also leave it blank
+		minHeight			: '',	//you can also leave it blank
 		
 		navigation			: true,	//true or false, to display or not the navigation buttons
 		
@@ -59,7 +59,7 @@
 		
 		pagination			: true,
 		
-		playPause			: true,	//true or false, to display or not the play/pause buttons
+		playPause			: false,	//true or false, to display or not the play/pause buttons
 		
 		pauseOnClick		: true,	//true, false. It stops the slideshow when you click the sliders.
 		
@@ -392,20 +392,39 @@
 		var res;
 		function resizeImageWork(){
 			w = wrap.width();
-			if(opts.height.indexOf('%')!=-1) {
-				var startH = Math.round(w / (100/parseFloat(opts.height)));
+			
+			// Custom by Magebassi			
+			var newheight;
+			var maxHeight = 50;
+			var imgLoaded = $('.imgLoaded',target);
+			var wT = imgLoaded.attr('width');
+			var hT = imgLoaded.attr('height'); 
+			
+			var calHeight = Math.round((w*hT)/wT); 
+			var hh = Math.round((calHeight*100)/w);
+			if(hh>maxHeight) {
+				newheight = maxHeight+'%';	
+			}else{
+				newheight = hh+'%';
+			}			
+			
+			if(newheight.indexOf('%')!=-1) {
+				var startH = Math.round(w / (100/parseFloat(newheight)));
 				if(opts.minHeight != '' && startH < parseFloat(opts.minHeight)){
 					h = parseFloat(opts.minHeight);
 				} else {
 					h = startH;
 				}
 				wrap.css({height:h});
-			} else if (opts.height=='auto') {
+			} else if (newheight=='auto') {
 				h = wrap.height();
 			} else {
-				h = parseFloat(opts.height);
+				h = parseFloat(newheight);
 				wrap.css({height:h});
 			}
+			
+			// END
+			
 			$('.camerarelative',target).css({'width':w,'height':h});
 			$('.imgLoaded',target).each(function(){
 				var t = $(this),
@@ -458,13 +477,10 @@
 									mTop = '-'+d*2+'px';
 									break;
 							}
-							t.css({
-								'height' : hT*r,
-								'margin-left' : 0,
-								'margin-top' : mTop,
+							t.css({								
 								'position' : 'absolute',
 								'visibility' : 'visible',
-								'width' : w
+								'width' : '100%'
 							});
 						}
 						else {
@@ -499,13 +515,10 @@
 									mLeft = '-'+d*2+'px';
 									break;
 							}
-							t.css({
-								'height' : h,
-								'margin-left' : mLeft,
-								'margin-top' : 0,
+							t.css({								
 								'position' : 'absolute',
 								'visibility' : 'visible',
-								'width' : wT*r
+								'width' : '100%'
 							});
 						}
 					} else {
@@ -541,13 +554,10 @@
 									mLeft = d*2+'px';
 									break;
 							}
-							t.css({
-								'height' : h,
-								'margin-left' : mLeft,
-								'margin-top' : 0,
+							t.css({								
 								'position' : 'absolute',
 								'visibility' : 'visible',
-								'width' : wT*r
+								'width' : '100%'
 							});
 						}
 						else {
@@ -582,13 +592,10 @@
 									mTop = d*2+'px';
 									break;
 							}
-							t.css({
-								'height' : hT*r,
-								'margin-left' : 0,
-								'margin-top' : mTop,
+							t.css({								
 								'position' : 'absolute',
 								'visibility' : 'visible',
-								'width' : w
+								'width' : '100%'
 							});
 						}
 					}
@@ -720,12 +727,12 @@
 			$(nextNav,wrap).animate({opacity:0},0);
 			$(commands,wrap).animate({opacity:0},0);
 			if(isMobile()){
-				fakeHover.live('vmouseover',function(){
+				fakeHover.on('vmouseover',function(){
 					$(prevNav,wrap).animate({opacity:1},200);
 					$(nextNav,wrap).animate({opacity:1},200);
 					$(commands,wrap).animate({opacity:1},200);
 				});
-				fakeHover.live('vmouseout',function(){
+				fakeHover.on('vmouseout',function(){
 					$(prevNav,wrap).delay(500).animate({opacity:0},200);
 					$(nextNav,wrap).delay(500).animate({opacity:0},200);
 					$(commands,wrap).delay(500).animate({opacity:0},200);
@@ -744,7 +751,7 @@
 		}
 		
 	
-		$('.camera_stop',camera_thumbs_wrap).live('click',function(){
+		$(document).on('click','.camera_stop',function(){
 			autoAdv = false;
 			elem.addClass('paused');
 			if($('.camera_stop',camera_thumbs_wrap).length){
@@ -760,7 +767,7 @@
 			}
 		});
 	
-		$('.camera_play',camera_thumbs_wrap).live('click',function(){
+		$(document).on('click','.camera_play',function(){
 			autoAdv = true;
 			elem.removeClass('paused');
 			if($('.camera_play',camera_thumbs_wrap).length){
@@ -1052,7 +1059,7 @@
 		canvasLoader();
 		
 		
-		$('.moveFromLeft, .moveFromRight, .moveFromTop, .moveFromBottom, .fadeIn, .fadeFromLeft, .fadeFromRight, .fadeFromTop, .fadeFromBottom',fakeHover).each(function(){
+		$('.moveFromLeft, .productTitle, .productDescription, .productPrice, .productViewMore, .productImage, .moveFromRight, .moveFromTop, .moveFromBottom, .fadeIn, .fadeFromLeft, .fadeFromRight, .fadeFromTop, .fadeFromBottom',fakeHover).each(function(){
 			$(this).css('visibility','hidden');
 		});
 		
@@ -1105,8 +1112,12 @@
 					$(imgLoaded).attr('data-alignment',allAlign[slideI]).attr('data-portrait',allPor[slideI]);
 					$(imgLoaded).attr('width',wT);
 					$(imgLoaded).attr('height',hT);
-					target.find('.cameraSlide_'+slideI).hide().css('visibility','visible');
+					target.find('.cameraSlide_'+slideI).css('visibility','visible');					
 					resizeImage();
+					
+					//var imgheight = $('.imgLoaded',slide);					
+					//wrap.css({height:imgheight.height()});
+					
 					nextSlide(slideI+1);
 				};
 			}
@@ -1123,6 +1134,8 @@
 					$(imgLoaded2).attr('width',wT);
 					$(imgLoaded2).attr('height',hT);
 					resizeImage();
+					//var imgheight = $('.imgLoaded',slide);					
+					//wrap.css({height:imgheight.height()});
 				};
 			}
 			opts.onLoaded.call(this);
@@ -1802,7 +1815,7 @@
 						
 						thumbnailPos();
 						
-						$('.moveFromLeft, .moveFromRight, .moveFromTop, .moveFromBottom, .fadeIn, .fadeFromLeft, .fadeFromRight, .fadeFromTop, .fadeFromBottom',fakeHover).each(function(){
+						$('.moveFromLeft, .moveFromRight, .productTitle, .productDescription, .productPrice,.productViewMore, .productImage, .moveFromTop, .moveFromBottom, .fadeIn, .fadeFromLeft, .fadeFromRight, .fadeFromTop, .fadeFromBottom',fakeHover).each(function(){
 							$(this).css('visibility','hidden');
 						});
 		
@@ -1821,7 +1834,7 @@
 
 						
 						var lMoveIn = selector.eq(slideI).find('.fadeIn').length;
-						var lMoveInContent = $('.cameraContent',fakeHover).eq(slideI).find('.moveFromLeft, .moveFromRight, .moveFromTop, .moveFromBottom, .fadeIn, .fadeFromLeft, .fadeFromRight, .fadeFromTop, .fadeFromBottom').length;
+						var lMoveInContent = $('.cameraContent',fakeHover).eq(slideI).find('.moveFromLeft, .moveFromRight, .productTitle, .productDescription, .productPrice, .productViewMore, .productImage, .moveFromTop, .moveFromBottom, .fadeIn, .fadeFromLeft, .fadeFromRight, .fadeFromTop, .fadeFromBottom').length; 
 						
 						if (lMoveIn!=0){
 							$('.cameraSlide.cameracurrent .fadeIn',fakeHover).each(function(){
@@ -1862,16 +1875,21 @@
 						$('.cameraContent.cameracurrent',fakeHover).show();
 						if (lMoveInContent!=0){
 							
-							$('.cameraContent.cameracurrent .moveFromLeft, .cameraContent.cameracurrent .moveFromRight, .cameraContent.cameracurrent .moveFromTop, .cameraContent.cameracurrent .moveFromBottom, .cameraContent.cameracurrent .fadeIn, .cameraContent.cameracurrent .fadeFromLeft, .cameraContent.cameracurrent .fadeFromRight, .cameraContent.cameracurrent .fadeFromTop, .cameraContent.cameracurrent .fadeFromBottom',fakeHover).each(function(){
+							$('.cameraContent.cameracurrent .moveFromLeft, .cameraContent.cameracurrent .moveFromRight, .cameraContent.cameracurrent .productTitle,  .cameraContent.cameracurrent .productDescription, .cameraContent.cameracurrent .productPrice, .cameraContent.cameracurrent .productViewMore,.cameraContent.cameracurrent .productImage, .cameraContent.cameracurrent .moveFromTop, .cameraContent.cameracurrent .moveFromBottom, .cameraContent.cameracurrent .fadeIn, .cameraContent.cameracurrent .fadeFromLeft, .cameraContent.cameracurrent .fadeFromRight, .cameraContent.cameracurrent .fadeFromTop, .cameraContent.cameracurrent .fadeFromBottom',fakeHover).each(function(){
 								if($(this).attr('data-easing')!=''){
 									var easeMove = $(this).attr('data-easing');
 								} else {
 									var easeMove = easing;
 								}
+								
+								var datax = $(this).attr('data-x');
+								var datay = $(this).attr('data-y');
+								var dataspeed = parseInt($(this).attr('data-speed'));	
+								var datafontsize = $(this).attr('data-font-size'); 
 								var t = $(this);
 								var pos = t.position();
 								var left = pos.left;
-								var top = pos.top;
+								var top = pos.top;// alert(pos.left); alert(pos.top); alert(w);
 								var tClass = t.attr('class');
 								var ind = t.index();
 								var thisH = t.outerHeight();
@@ -1900,12 +1918,42 @@
 									t.css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'top':pos.top,opacity:1},(time/lMoveInContent)*0.15,easeMove,function(){
 										t.css({top:'auto',bottom:0});
 									});
-								} else if(tClass.indexOf("fadeFromBottom") != -1) {
+								} else if(tClass.indexOf("fadeFromBottom") != -1) { 
 									t.animate({opacity:0},0).css({'bottom':'-'+thisH+'px'});
 									t.css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'bottom':'0',opacity:1},(time/lMoveInContent)*0.15,easeMove);
 								} else if(tClass.indexOf("fadeIn") != -1) {
 									t.animate({opacity:0},0).css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({opacity:1},(time/lMoveInContent)*0.15,easeMove);
-								} else {
+								}
+								
+								// Customized by magebassi
+								else if(tClass.indexOf("productTitle") != -1) {
+									
+									t.css({'left':(datax-20)+'px','top':'+'+datay+'px','right':'auto','font-size':datafontsize});
+									t.css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'left':datax,'right':'auto'},dataspeed,easeMove);
+										
+								}else if(tClass.indexOf("productDescription") != -1) {
+									
+									t.css({'left':datax+'px','top':'+'+datay+'px','right':'auto','font-size':datafontsize});
+									t.animate({opacity:0},0).css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'left':datax,'right':'auto',opacity:1},dataspeed,easeMove);
+										
+								}else if(tClass.indexOf("productPrice") != -1) {
+									
+									t.css({'left':datax+'px','top':'+'+datay+'px','right':'auto','font-size':datafontsize});
+									t.animate({opacity:0},0).css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'left':datax,'right':'auto',opacity:1},dataspeed,easeMove);
+										
+								} else if(tClass.indexOf("productViewMore") != -1) {
+									
+									t.css({'left':datax+'px','bottom':'-'+thisH+'px','top':'auto','font-size':datafontsize});
+									t.css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'left':datax,'top':'auto','bottom':100},dataspeed,easeMove);
+										
+								} else if(tClass.indexOf("productImage") != -1) {
+									
+									t.css({'right':'-'+(w)+'px','top':'+'+datay+'px','font-size':datafontsize});
+									t.css('visibility','visible').delay((time/lMoveInContent)*(0.1*(ind-1))).animate({'right':datax,'top':datay},dataspeed,easeMove);
+										
+								} 
+								// End customization by magebassi
+								else {
 									t.css('visibility','visible');
 								}
 							});

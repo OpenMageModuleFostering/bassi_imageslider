@@ -1,4 +1,17 @@
 <?php
+/**
+ *
+ * Version			: 1.0.4
+ * Edition 			: Community 
+ * Compatible with 	: Magento 1.5.x to latest
+ * Developed By 	: Magebassi
+ * Email			: magebassi@gmail.com
+ * Web URL 			: www.magebassi.com
+ * Extension		: Magebassi Easy Banner slider
+ * 
+ */
+?>
+<?php
 
 class Bassi_Imageslider_Block_Adminhtml_Imageslider_Edit_Tab_Form extends Mage_Adminhtml_Block_Widget_Form
 {
@@ -45,6 +58,30 @@ class Bassi_Imageslider_Block_Adminhtml_Imageslider_Edit_Tab_Form extends Mage_A
 		  'after_element_html' => "<small>Image URL</small>",
           'name'      => 'weblink',
       ));
+	  
+	  $fieldset->addField('linktarget', 'select', array(
+				  'label'     => Mage::helper('imageslider')->__('Link Target'),
+				  'name'      => 'linktarget',
+				  'after_element_html' => "<small>New Tab: To open in new tab, Same Tab: To open in same tab</small>",
+				  'values'    => array(
+					  array(
+						  'value'     => '_self',
+						  'label'     => Mage::helper('imageslider')->__('Same Tab'),
+					  ),
+				  
+					  array(
+						  'value'     => '_blank',
+						  'label'     => Mage::helper('imageslider')->__('New Tab'),
+					  )
+				  ),
+			));
+			
+		$fieldset->addField('sort_order', 'text', array(
+			'name'		=> 'sort_order',
+			'label'		=> $this->__('Sort Order'),
+			'title'		=> $this->__('Sort Order'),
+			'class'		=> 'validate-digits'
+		));
 			
       $fieldset->addField('content', 'editor', array(
           'name'      => 'content',

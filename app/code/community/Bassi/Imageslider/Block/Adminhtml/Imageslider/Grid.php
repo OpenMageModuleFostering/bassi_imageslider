@@ -1,4 +1,17 @@
 <?php
+/**
+ *
+ * Version			: 1.0.4
+ * Edition 			: Community 
+ * Compatible with 	: Magento 1.5.x to latest
+ * Developed By 	: Magebassi
+ * Email			: magebassi@gmail.com
+ * Web URL 			: www.magebassi.com
+ * Extension		: Magebassi Easy Banner slider
+ * 
+ */
+?>
+<?php
 
 class Bassi_Imageslider_Block_Adminhtml_Imageslider_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
@@ -26,11 +39,28 @@ class Bassi_Imageslider_Block_Adminhtml_Imageslider_Grid extends Mage_Adminhtml_
           'width'     => '50px',
           'index'     => 'imageslider_id',
       ));
+	  
+	  $this->addColumn('image',array(
+		  'header'    => Mage::helper('imageslider')->__('Banner Image'),
+		  'align'     =>'center',
+          'index'     => 'image',
+		  'filter'    => false,
+		  'sortable'  => false,
+		  'width'	  =>'150',
+          'renderer'  => 'imageslider/adminhtml_renderer_image'	  
+	  )); 
 
       $this->addColumn('title', array(
-          'header'    => Mage::helper('imageslider')->__('Title'),
+          'header'    => Mage::helper('imageslider')->__('Banner Title'),
           'align'     =>'left',
           'index'     => 'title',
+      ));
+	  
+	   $this->addColumn('sort_order', array(
+          'header'    => Mage::helper('imageslider')->__('Sort Order'),
+          'align'     =>'left',
+		  'width'     => '80px',
+          'index'     => 'sort_order',
       ));
 
 	  /*

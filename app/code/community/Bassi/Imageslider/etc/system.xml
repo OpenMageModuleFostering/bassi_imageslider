@@ -2,24 +2,43 @@
 <config>
 	<tabs>
 		<bassi_extensions>
-			<label>Bassi Extensions</label>
+			<label>Magebassi Extensions</label>
 			<sort_order>195</sort_order>
 		</bassi_extensions>
 	</tabs>
     <sections>
         <imageslider translate="label" >
-            <label>Banner Slider</label>
+            <label>Easy Banner Slider</label>
             <tab>bassi_extensions</tab>
             <frontend_type>text</frontend_type>
             <sort_order>90</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
-            <groups>				
+            <groups>
+				<about translate="label">	
+					<label>Developer</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+					<expanded>1</expanded>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>					
+					<fields>
+						<info translate="label">
+							<frontend_model>imageslider/about</frontend_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</info>																
+					</fields>
+				</about>
                 <general translate="label">
                     <label>Banner Slider Settings</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>1</sort_order>
+                    <sort_order>2</sort_order>
+					<expanded>1</expanded>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -34,8 +53,6 @@
                             <show_in_store>1</show_in_store>
                         </enabled>
 						
-						
-
 						<style translate="label">
                             <label>Image Style</label>							
                             <frontend_type>select</frontend_type>
@@ -129,40 +146,88 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </navigation>
-						
-						<!--<fblayout translate="label">
-                            <label>Layout Style</label>							
-                            <frontend_type>select</frontend_type>
-                            <source_model>imageslider/fblayout</source_model>                          
+											
+                    </fields>
+                </general>
+				
+				<style translate="label">	
+					<label>Style</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+					<expanded>1</expanded>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>					
+					<fields>
+						<navcolor translate="label">
+                            <label>Navigation Arrow backgorund Color</label>	
+							<comment><![CDATA[Navigation Arrow backgorund Color code with '#' for e.g. #FFFFFF]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </navcolor>
+						<paginationcolor translate="label">
+                            <label>Pagination/Thumbnail background Color</label>	
+							<comment><![CDATA[Pagination/Thumbnail background color code with '#' for e.g. #333333]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </paginationcolor>
+						<paginationdotcolor translate="label">
+                            <label>Pagination dot Color</label>	
+							<comment><![CDATA[Pagination dot color code with '#' for e.g. #434648]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </paginationdotcolor>
+						<captionbgcolor translate="label">
+                            <label>Caption background Color</label>	
+							<comment><![CDATA[Caption background color code with '#' for e.g. #333333]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
                             <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </fblayout>		
+                        </captionbgcolor>
 						
-						<fbcolorscheme translate="label">
-                            <label>Color Scheme</label>							
-                            <frontend_type>select</frontend_type>
-                            <source_model>imageslider/fbcolorscheme</source_model>                          
+						<captiontextcolor translate="label">
+                            <label>Caption Text Color</label>	
+							<comment><![CDATA[Caption text color code with '#' for e.g. #FFFFFF]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
                             <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </fbcolorscheme>			
+                        </captiontextcolor>
 						
-							
-						<datawidth translate="label">
-                            <label>Width</label>							
-                            <frontend_type>text</frontend_type>                                               
+						<loaderColor translate="label">
+                            <label>Loader Bar Color</label>	
+							<comment><![CDATA[Loader Bar Color code with '#' for e.g. #FFFFFF]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
                             <sort_order>6</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </datawidth>-->	
+                        </loaderColor>
 						
-											
-                    </fields>
-                </general>
+						<loaderBgColor translate="label">
+                            <label>Loader Background Color</label>	
+							<comment><![CDATA[Loader Background Color code with '#' for e.g. #222222]]></comment>						
+                            <frontend_type>text</frontend_type>                                                      
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </loaderBgColor>
+						
+					</fields>
+				</style>
 				
 				
             </groups>

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Bassi_Imageslider>
-            <version>1.0.3</version>
+            <version>1.0.4</version>
         </Bassi_Imageslider>
     </modules>
     <global>
@@ -57,15 +57,25 @@
             <general>
                 <enabled>1</enabled>
 				<style>random</style>
-				<thumbnails>thumbnail</thumbnails>
-				<slidingtime>2</slidingtime>
-				<slidingeffecttime>1</slidingeffecttime>
+				<thumbnails>pagination</thumbnails>
+				<slidingtime>4</slidingtime>
+				<slidingeffecttime>2</slidingeffecttime>
 				<loader>pie</loader>
 				<navigation>1</navigation>
-				<imagewidth>684</imagewidth>
-				<imageheight>342</imageheight>
+				<imagewidth></imagewidth>
+				<imageheight></imageheight>
 				<description>1</description>				
-            </general>			
+            </general>
+			<style>
+				<navcolor>#DBD5D0</navcolor>
+				<paginationcolor>#999999</paginationcolor>
+				<paginationdotcolor>#333333</paginationdotcolor>
+				<captionbgcolor>#333333</captionbgcolor>
+				<captiontextcolor>#FFFFFF</captiontextcolor>
+				<loaderColor>#DBD5D0</loaderColor>
+				<loaderBgColor>#000000</loaderBgColor>
+				
+			</style>
         </imageslider>
 		
     </default>
@@ -79,13 +89,6 @@
                 </args>
             </imageslider>
         </routers>	
-        <layout>
-            <updates>
-                <imageslider>
-                    <file>imageslider.xml</file>
-                </imageslider>
-            </updates>
-        </layout>
     </frontend>    
 	
 	<admin>
