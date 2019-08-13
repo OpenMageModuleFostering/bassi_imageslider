@@ -75,13 +75,16 @@ class Bassi_Imageslider_Adminhtml_ImagesliderController extends Mage_Adminhtml_C
 	}	
  
 	public function saveAction() {
-		if ($data = $this->getRequest()->getPost()) {	
-		
-			if($data['filename']['delete']==1){
-				$data['filename']='';
-			}
-			elseif(is_array($data['filename'])){
-				$data['filename']=$data['filename']['value'];
+		if ($data = $this->getRequest()->getPost()) {
+
+			if(isset($data['filename']))
+			{
+				if(isset($data['filename']['delete']) && $data['filename']['delete']==1){
+					$data['filename']='';
+				}
+				elseif(is_array($data['filename'])){
+					$data['filename']=$data['filename']['value'];
+				}
 			}
 							  			
 			$file = new Varien_Io_File();			

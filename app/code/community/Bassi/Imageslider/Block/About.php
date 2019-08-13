@@ -26,15 +26,15 @@ class Bassi_Imageslider_Block_About
      */
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
-		$logopath	=	'http://www.magentocommerce.com/images/avatars/uploads/avatar_179510.png';
+		$logopath	=	'http://store.bassiwebs.com/bw.png';
         $html = <<<HTML
-		<div style="background:url('$logopath') no-repeat scroll 14px 14px #EAF0EE;border:1px solid #CCCCCC;margin-bottom:10px;padding:10px 5px 5px 164px;">
+		<div style="background:url('$logopath') no-repeat scroll 14px 14px #EAF0EE;border:1px solid #CCCCCC;margin-bottom:10px;padding:10px 5px 5px 233px;">
 		<p>
 			<strong>Magento Web Development and PREMIUM FREE/PAID MAGENTO EXTENSIONS</strong><br />
-			<a href="http://www.magebassi.com/" target="_blank">Magebassi</a> offers a wide choice of nice-looking and easily editable free and premium Magento extensions.<br />       
+			<a href="http://www.bassiwebs.com/" target="_blank">Bassiwebs</a> (Magebassi) offers a wide choice of nice-looking and easily editable free and premium Magento extensions.<br />       
 		</p>
 		<p>
-			You can <a href="http://www.magebassi.com/index.php/contacts/">Contact Us</a> for magento web development and customize new magento extensions per your requirement.			
+			You can <a href="http://store.bassiwebs.com/contacts/">Contact Us</a> for magento web development and custom extensions per your requirement.			
 		</p>
 		<p>
 			<b>Magento Development:</b> We are expert in Magento, you may contact us for Installation, configuration, customization and any other magento tasks.
@@ -47,9 +47,12 @@ class Bassi_Imageslider_Block_About
 		</p>
 		
 		<p>
-			My extensions on <a href="http://www.magentocommerce.com/magento-connect/developer/magebassi#extensions" target="_blank">MagentoConnect</a><br />
+			My extensions on <a href="http://www.magentocommerce.com/magento-connect/developer/bassiwebs" target="_blank">MagentoConnect</a><br />
 			</p>
-			<p>For any questions or quote please email us at <a href="mailto:magebassi@gmail.com">magebassi@gmail.com</a> or Skype: magebassi</p>
+			<p>
+			Store URL: <a href="http://store.bassiwebs.com/" target="_blank">Bassiwebs Store</a><br />
+			</p>
+			<p>For any questions or quote please email us at <a href="mailto:info@bassiwebs.com">info@bassiwebs.com</a> or Skype: umesh.bw</p>
 			<br />
 			<p>To add the banner slider, please add the below codes for specific location:<br /><br />
 			

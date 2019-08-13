@@ -100,7 +100,9 @@ class Bassi_Imageslider_Block_Adminhtml_Imageslider_Edit_Tab_Form extends Mage_A
       } elseif ( Mage::registry('imageslider_data') ) {
           $data = Mage::registry('imageslider_data')->getData();
       }
-	  $data['store_id'] = explode(',',$data['stores']);
+	  if (isset($data['stores'])) {
+		$data['store_id'] = explode(',',$data['stores']);
+	  }
 	  $form->setValues($data);
 	  
       return parent::_prepareForm();
