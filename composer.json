@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Bassi_Imageslider",
+    "name": "openmage-module-fostering\/bassi_imageslider",
     "type": "magento-module",
-    "license": "OSL-v3.0",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Bassiwebs (Magebassi) Responsive Easy Banner Slider runs images as slider on CMS, Static and other custom locations.",
     "authors": [

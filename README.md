@@ -1,3 +1,5 @@
+
+
 ## Original Package Description
 
 Bassiwebs (Magebassi) Responsive Easy Banner Slider runs images as slider on CMS, Static and other custom locations.
